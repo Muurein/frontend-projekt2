@@ -5,13 +5,83 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     
-    <link rel="stylesheet" src="css/styles.css">
-    <script src="js/main.js" type="module"></script>
+    <link rel="stylesheet" href="css/main.scss">
+    <script src="js/main.js" type="module" defer></script>
 
 </head>
 <body>
-    <h1>funkar</h1>
+
+    <header>
+        <p class="logo">The Library of Ohara</p>
+    </header>
+
+    <main>
+        <h1>Search for book title here:</h1>
+        <form>
+            <input id="search" name="search" type="text" >
+            <button id="searchButton" class="search-button">Search</button>
+        </form>
+
+        <div id="error"></div>
+
+        <!--<div id="displaySearch">
+            <div id="header">
+                <div id="imageContainer">
+                    <img src="../frog.jpg" alt="frog" id="bookImage">
+                </div>
+            </div>
+
+                <div id="left">
+                    <h2>Book Information</h2>
+                    <label for="bookName">Book Name:</label>
+                    <input type="text" id="bookName" name="bookName" required>
+                    <br>
+
+                    <label for="isb">ISBN:</label>
+                    <div class="input-icon">
+                        <input type="text" id="isbn" name="isbn" required>
+                        <i class="fa fa-search"></i>
+                    </div>
+                    <br>
+                    
+                    <label for="authorName">Author Name:</label>
+                    <input type="text" id="authorName" name="authorName" required>
+                </div>
+
+                <div id="right">
+                    <h2>Additional Information</h2>
+                    <label for="publishedDate">Published Date:</label>
+                    <input type="text" id="publishedDate" name="publishedDate" required>
+                    <br>
+
+                    <label for="description">Description:</label>
+                    <input type="text" id="description" name="description" required>
+                    <br>
+
+                    <label for="genre">Genre:</label>
+                    <input type="text" id="genre" name="genre" required>
+                    <br>
+
+                    <label for="pageCount">Page Count:</label>
+                    <input type="text" id="pageCount" name="pageCount" required>
+                    <br>
+                </div>
+                <div class="button-container"></div>
+            </div>
+        -->
+        <div id="displaySearch">
+            <h3>Boktitel: </h3>
+            <p id="bookTitle"></p>
+        </div>
+    </main>
+
+
+
     <!--håller the embedded view FIXA STYLING I CSS-->
     <div id="viewerCanvas" style="width: 3500px; height: 250px"></div>
+    <footer>
+        <p>Frontend-baserad webbutveckling - projekt</p>
+        <p>Amanda Thim - amth2302</p>
+    </footer>
 </body>
 </html>
