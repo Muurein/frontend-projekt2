@@ -1,87 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    
-    <link rel="stylesheet" href="css/main.scss">
-    <script src="js/main.js" type="module" defer></script>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
 
+
+   <link rel="stylesheet" href="css/main.scss">
+   <script src="js/main.js" type="module" defer></script>
 </head>
 <body>
+  
+   <header>
+        <p class="logo">The Archive of Ohara</p>
+   </header>
 
-    <header>
-        <p class="logo">The Library of Ohara</p>
-    </header>
-
-    <main>
-        <h1>Search for book title here:</h1>
+   <main>
+        
+        <!--sökfält - söker efter titel-->
         <form>
-            <input id="search" name="search" type="text" >
+            <h1>Search for a book title here: </h1>
+            <input id="search" name="search" type="text">
+            <p id="writeTitle"></p>
             <button id="searchButton" class="search-button">Search</button>
         </form>
 
+
+        <!--felmeddelande för när anslutningen till API:t inte fungerar som planerat-->
         <div id="error"></div>
 
-        <!--<div id="displaySearch">
-            <div id="header">
-                <div id="imageContainer">
-                    <img src="../frog.jpg" alt="frog" id="bookImage">
-                </div>
-            </div>
 
-                <div id="left">
-                    <h2>Book Information</h2>
-                    <label for="bookName">Book Name:</label>
-                    <input type="text" id="bookName" name="bookName" required>
-                    <br>
+        <div id="displaySearch"> <!--dela in i andra divs för att kunna plcera vissa segment på ett önskat sätt-->
+            <article class="image-article">
+                <img id="bookImage" src="./images/no-background.webp" alt="" id="bookImage">
+            </article>
+            
+            <h2>Book Information</h2>
 
-                    <label for="isb">ISBN:</label>
-                    <div class="input-icon">
-                        <input type="text" id="isbn" name="isbn" required>
-                        <i class="fa fa-search"></i>
-                    </div>
-                    <br>
-                    
-                    <label for="authorName">Author Name:</label>
-                    <input type="text" id="authorName" name="authorName" required>
-                </div>
 
-                <div id="right">
-                    <h2>Additional Information</h2>
-                    <label for="publishedDate">Published Date:</label>
-                    <input type="text" id="publishedDate" name="publishedDate" required>
-                    <br>
-
-                    <label for="description">Description:</label>
-                    <input type="text" id="description" name="description" required>
-                    <br>
-
-                    <label for="genre">Genre:</label>
-                    <input type="text" id="genre" name="genre" required>
-                    <br>
-
-                    <label for="pageCount">Page Count:</label>
-                    <input type="text" id="pageCount" name="pageCount" required>
-                    <br>
-                </div>
-                <div class="button-container"></div>
-            </div>
-        -->
-        <div id="displaySearch">
-            <h3>Boktitel: </h3>
-            <p id="bookTitle"></p>
+            <article class="title-article">
+                <h3>Title:</h3>
+                <p id="bookTitle"></p>
+            </article>
+            
+            <article class="author-article">
+                <h3>Author(s):</h3>
+                <p id="bookAuthor"></p>
+            </article>
+            
+            <article class="genre-article">
+                <h3>Genre:</h3>
+                <p id="bookGenre"></p>
+            </article>
+            
+            <article class="pagecount-article">
+                <h3>Page count:</h3>
+                <p id="bookPages"></p>
+            </article>
+            
+            <article class="published-article">
+                <h3>First published:</h3>
+                <p id="bookPublished"></p>
+            </article>
+            
+            <article class="isbn-article">
+                <h3>ISBN-number:</h3>
+                <p id="bookIsbn"></p>
+            </article>
+            
+            <article class="description-article">
+                <h3>Description:</h3>
+                <p id="bookDescription"></p>
+            </article>
         </div>
+        <button>Back</button><!--se till att de inte syns hela tiden-->
+        <button>Next</button>
     </main>
 
-
-
-    <!--håller the embedded view FIXA STYLING I CSS-->
-    <div id="viewerCanvas" style="width: 3500px; height: 250px"></div>
-    <footer>
-        <p>Frontend-baserad webbutveckling - projekt</p>
+   <footer>
+        <p>KURSNAMN - projekt</p>
         <p>Amanda Thim - amth2302</p>
-    </footer>
+   </footer>
+
 </body>
 </html>
