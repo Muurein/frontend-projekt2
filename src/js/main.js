@@ -1,5 +1,6 @@
 "use strict"
 
+import nyTimesApi from "./secondapi.js";
 
 //platser för utskrift
 const searchInputEl = document.getElementById("search");
@@ -31,18 +32,22 @@ const paper4 = document.querySelector("#p4");
 const paper5 = document.querySelector("#p5");
 const paper6 = document.querySelector("#p6");
 
+
 // Business Logic
 let currentLocation = 0;
 let numOfPapers = 7;
 let maxLocation = numOfPapers + 1;
 
-// Event Listener
+
+// eventlyssnare
 searchButtonEl.addEventListener("click", e => {initializeBooks(e)});
 prevBtn.addEventListener("click", () => goPrevPage());
 nextBtn.addEventListener("click", () => goNextPage());
 
+
 let books = [];
 
+//hämtar google books api
 async function initializeBooks(event){
     event.preventDefault();
 
@@ -55,24 +60,70 @@ async function initializeBooks(event){
 
     currentLocation = 0;
     
+    //tar användaren till nästa sida samt hämtar NYtimes-api:t efter en check
     if(books != null) {
         goNextPage();
+        initializeReviews();
     }
 
- }
+}
 
+ //hämtar sökresultatet från formuläret
+async function getBooks(search) {
+    try {
+        //ajax-anrop
+        const dataFetch = await fetch(`https://www.googleapis.com/books/v1/volumes?q=volume:${search}&maxResults=5`);
+      
+        if (!dataFetch.ok) {
+            document.querySelector("#error").innerHTML = "<p>Book not found</p>"
+        }
+  
+        //lägger in datan arrayen
+        const data = await dataFetch.json();
+        console.log(data);
+
+        return data;
+
+
+    } catch(error) {
+        console.log("booksearch: " + error);
+
+        document.querySelector("#bookError").innerHTML = "<p>Something went wrong with the connection. Please, try again later!</p>";
+    }
+    return null;
+ } 
+
+//hämtar NYtimes-api:t från den andra JS-filen
+ async function initializeReviews() { 
+    let reviewInfo = new nyTimesApi();
+
+    let reviewsResult = await reviewInfo.search(searchInputEl.value);
+
+    //begränsar till tre recensioner
+    reviewsResult.response.docs.length = 3;
+
+    let newReview = "";
+
+    reviewsResult.response.docs.forEach((review) => {
+        newReview += `<p>${review.web_url}</p>`;
+    });
+
+    reviewsDivEl.innerHTML = newReview;
+
+}
+
+//öppnar boken, stylar knappar därefter
  function openBook() {
     book.style.transform = "translateX(50%)";
     prevBtn.style.transform = "translateX(-180px)";
     nextBtn.style.transform = "translateX(180px)";
 }
  
-
+//stänger boken, stylar bok och knappar därefter
 function closeBook() {
     if(currentLocation <= 1) {
         book.style.transform = "translateX(0%)";
     } else {
-        console.log("else " + currentLocation);
         book.style.transform = "translateX(100%)";
     }
 
@@ -80,9 +131,10 @@ function closeBook() {
     nextBtn.style.transform = "translateX(0px)";
 }
 
+//bestämmer vad som ska hända beroende på vilken sida man är på
 function updateBookState(state, isNextPage, books) {
     let bookHTMLContent;
-    console.log('state :>> ', state);
+
     switch(state) {
         case 0:
             closeBook(true);
@@ -117,7 +169,6 @@ function updateBookState(state, isNextPage, books) {
 
             back2El.innerHTML =  bookHTMLContent.meta;
             front3El.innerHTML = bookHTMLContent.summary;
-
             break;
         case 3:
             if(isNextPage) {
@@ -132,7 +183,6 @@ function updateBookState(state, isNextPage, books) {
 
             back3El.innerHTML =  bookHTMLContent.meta;
             front4El.innerHTML = bookHTMLContent.summary;
-
             break;
         case 4:
             if(isNextPage) {
@@ -147,8 +197,7 @@ function updateBookState(state, isNextPage, books) {
     
             back4El.innerHTML =  bookHTMLContent.meta;
             front5El.innerHTML = bookHTMLContent.summary;
-
-        break;
+            break;
         case 5:
             if(isNextPage) {
                 paper5.classList.add("flipped");
@@ -163,8 +212,7 @@ function updateBookState(state, isNextPage, books) {
 
             back5El.innerHTML =  bookHTMLContent.meta;
             front6El.innerHTML = bookHTMLContent.summary;
-
-        break;
+            break;
         case 6:
             if(isNextPage) {
                 paper6.classList.add("flipped");
@@ -177,6 +225,7 @@ function updateBookState(state, isNextPage, books) {
     }
 }
 
+//gå till nästa sida
 function goNextPage() {
     //om books.items inte har ett värde, avbryt funktionen
     if(!books.items) {
@@ -189,7 +238,7 @@ function goNextPage() {
     }
 }
 
-
+//gå till föregående sida
 function goPrevPage(){
     if(!books.items) {
         return;
@@ -201,40 +250,14 @@ function goPrevPage(){
     }
 }
 
-//hämtar sökresultatet
-async function getBooks(search) {
-    try {
-        //ajax-anrop
-        const dataFetch = await fetch(`https://www.googleapis.com/books/v1/volumes?q=volume:${search}&maxResults=5`);
-      
-        if (!dataFetch.ok) {
-            document.querySelector("#error").innerHTML = "<p>Book not found</p>"
-        }
-  
-        //lägger in datan arrayen
-        const data = await dataFetch.json();
-        console.log(data);
-
-        return data;
-
-
-    } catch(error) {
-        console.log("booksearch: " + error);
-
-        document.querySelector("#bookError").innerHTML = "<p>Something went wrong with the connection. Please, try again later!</p>";
-    }
-    return null;
- } 
-
-
+//bygger upp hur innehållet/sökresultatet ska se ut på sidan
 function renderBookSearchResult(books, index) {
-    console.log('books :>> ', books);
+
     
     const book = books.items[index];
-    //const NYTIMES API = bestseller.book.rank
     const newBook1 =
                 `
-                <img src=${book.volumeInfo.imageLinks.thumbnail /*??  lös bilden*/} alt="book cover" >
+                <img src=${book.volumeInfo.imageLinks.thumbnail ? book.volumeInfo.imageLinks.thumbnail: "Image unavailable"} alt="book cover" >
                 <article>
                     <h3>${book.volumeInfo.title ?? "Unavailable"}</h3>
                 </article>
