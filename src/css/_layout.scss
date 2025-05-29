@@ -54,6 +54,7 @@ form {
     height: auto;
     text-align: center;
     padding: 6%;
+    padding-bottom: 8%;
 }
 
 form h1 {
@@ -61,12 +62,34 @@ form h1 {
     margin-bottom: 7%;
 }
 
-form button {
+#searchButton {
     margin-top: 7%;
 }
 
 #displaySearch {
     background-color: base.$color-primary;
+    padding: 6%;
+    margin-top: 10%;
+    width: 100%;
+    text-align: center;
 }
 
+#displaySearch h2 {
+    margin-bottom: 6%;
+}
+
+#displaySearch article {
+    margin: 5%;
+}
+
+#displaySearch div {
+    margin: 5%;
+    margin-bottom: 35%;
+}
+
+footer {
+    background-color: base.$color-primary;
+    padding: 6%;
+    text-align: center;
+}
 

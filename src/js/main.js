@@ -1,374 +1,264 @@
 "use strict"
-//google books api embed
-// //globala variabler
-// let bookArray = [];
 
 
-
-
-// async function loadBooks() {
-//     try {
-//         //ajax-anrop
-//         const dataFetch = await fetch("https://www.google.com/books/jsapi.js")
-
-
-
-
-//         //vänta på svar, kovertera till json, lagra i global array
-//         bookArray = await dataFetch.json();
-
-
-
-
-//         initialize(bookArray);
-
-
-
-
-//     } catch (error) {
-//         //till utvecklare
-//         console.error(error);
-
-
-
-
-//         //till användare
-//         document.getElementById("error").innerHTML = "<p>Något blev fel med anslutningen. Försök igen senare!</p>"
-//     }
-// }
-
-
-
-
-// google.books.load();
-
-
-
-
-// //om något går fel i hämtningen
-// function alertNotFound() {
-//     alert("could not embed the book!");
-// }
-
-
-
-
-
-
-
-
-// //initialize viewer med specifik bok genom att hämta bokens ISBN
-// //måste sändas innan någon annan operation utförs på vy-objektet
-// function initialize() {
-//     //hämta viewer
-//     const viewer = new google.books.DefaultViewer(document.getElementById("viewerCanvas"));
-
-
-
-
-//     viewer.load("ISBN:9781635570298", alertNotFound);
-// }
-
-
-
-
-
-
-
-
-// //för att se om allt har laddat in ordentligt
-// //This callback may be useful if, for example, you only want to show certain elements on your page if the viewer has fully rendered.
-// /*function alertInitialized() {
-//     alert("book successfully loaded and initialized!");
-//   }
-
-
-
-
-// function initialize() {
-//     var viewer = new google.books.DefaultViewer(document.getElementById('viewerCanvas'));
-//     viewer.load('ISBN:0738531367', null, alertInitialized);
-// } */
-
-
-
-
-// google.books.setOnLoadCallback(initialize);
-
-
-
-
-
-
-
-
-//google books api -search
-// const searchInputEl = document.getElementById("search");
-// const displaySearchEl = document.getElementById("displaySearch");
-// const searchButtonEl = document.getElementById("searchButton");
-// const bookImageEl = document.getElementById("bookImage");
-// const bookNameEl = document.getElementById("bookName");
-// const authorNameEl = document.getElementById("authorName");
-// const publishedDateEl = document.getElementById("publishedDate");
-// const descriptionEl = document.getElementById("description");
-// const genreEl  = document.getElementById("genre");
-// const pageCountEl = document.getElementById("pageCount");
-// const books = [];
-
-
-
-
-// searchButtonEl.addEventListener("click", initializeBooks());
-
-
-
-
-// async function initializeBooks() {
-
-
-
-
-//     if(searchInputEl === "") {
-//         alert("Write a title");
-//     } else {
-//         try {
-//             const dataFetch = await fetch(`https://www.googleapis.com/books/v1/volumes?q=volume:${searchInputEl}`);
-         
-//             if (!dataFetch.ok) {
-//                 throw new Error("Book not found");
-//             }
-
-
-
-
-//             const data = await dataFetch.json();
-//             console.log("data: " + data);
-
-
-
-
-//             const book = data.items[0].volumeInfo; //datan som först kommer upp
-
-
-
-
-//             console.log("book:" + book);
-
-
-
-
-//             bookImageEl.src = book.imageLinks ? book.imageLinks.thumbnail : "../frog.jpg"; //om det inte finns någon bild/thumbnail till boken kommer grodan automatiskt visas
-//             bookNameEl.value = book.title;
-//             authorNameEl.value = book.authors ? book.authors.join(",") : "Unknown author"; //om det finns fler författare, skriv ut alla
-//             publishedDateEl.value = book.publishedDate ? book.publishedDate : "Not available";
-//             descriptionEl.value = book.description ? book.description : "Not available";
-//             genreEl.value = book.categories ? book.categories : "Not available";
-//             pageCountEl.value = book.pageCount ? book.pageCount : "Not avilable";
-
-
-
-
-         
-
-
-
-
-         
-         
-//             //writeOutSearch(books);
-//         } catch(error) {
-//             console.log(error);
- 
-//             document.querySelector("#error").innerHTML = "<p>Något gick fel med anslutningen. Kom tillbaka och försök igen senare!</p>"
-//         }
-//     }
- 
-// }
-
-
-
-
-// function writeOutSearch() {
- 
-
-
-
-
-//     console.log("writeOutSearch");
-// }
-
-
-
-
-
-
-
-
-"use strict"
-
-
-//hämtar variabler
+//platser för utskrift
 const searchInputEl = document.getElementById("search");
-const displaySearchEl = document.getElementById("displaySearch");
-let titleMessageEl = document.getElementById("writeTitle");
 const searchButtonEl = document.getElementById("searchButton");
+let displaySearchEl = document.getElementById("displaySearch");
+let titleMessageEl = document.getElementById("writeTitle");
+const back1El = document.getElementById("b1");
+const front2El = document.getElementById("f2");
+const back2El = document.getElementById("b2");
+const front3El = document.getElementById("f3");
+const back3El = document.getElementById("b3");
+const front4El = document.getElementById("f4");
+const back4El = document.getElementById("b4");
+const front5El = document.getElementById("f5");
+const back5El = document.getElementById("b5");
+const front6El = document.getElementById("f6");
+const back6El = document.getElementById("b6");
+const reviewsDivEl = document.getElementById("reviews");
 
-const books = [];
 
+//bok-variabler
+const prevBtn = document.querySelector("#prev-btn");
+const nextBtn = document.querySelector("#next-btn");
+const book = document.querySelector("#book");
+const paper1 = document.querySelector("#p1");
+const paper2 = document.querySelector("#p2");
+const paper3 = document.querySelector("#p3");
+const paper4 = document.querySelector("#p4");
+const paper5 = document.querySelector("#p5");
+const paper6 = document.querySelector("#p6");
 
-//bokinfo-variabler
-const bookImageEl = document.getElementById("bookImage");
-const bookTitleEl = document.getElementById("bookTitle");
-const bookAuthorEl = document.getElementById("bookAuthor");
-const bookGenreEl = document.getElementById("bookGenre");
-const bookPagesEl = document.getElementById("bookPages");
-const bookPublishedEl = document.getElementById("bookPublished");
-const bookIsbnEl = document.getElementById("bookIsbn");
-const bookDescriptionEl = document.getElementById("bookDescription");
+// Business Logic
+let currentLocation = 0;
+let numOfPapers = 7;
+let maxLocation = numOfPapers + 1;
 
-
-//lyssna efter när knappen trycks
+// Event Listener
 searchButtonEl.addEventListener("click", e => {initializeBooks(e)});
+prevBtn.addEventListener("click", () => goPrevPage());
+nextBtn.addEventListener("click", () => goNextPage());
 
+let books = [];
 
-
-//google books API - att söka efter böcker
-//hämtar böcker
 async function initializeBooks(event){
-   event.preventDefault();
+    event.preventDefault();
 
-   const search = searchInputEl.value;
+    const search = searchInputEl.value;
+    books = await getBooks(search);
 
-   titleMessageEl = "";
+    for(let i = 0; i < currentLocation; i++) {
+        goPrevPage();
+    }
 
+    currentLocation = 0;
+    
+    if(books != null) {
+        goNextPage();
+    }
 
-  //SKA INTE FINNAS HÄR?
-  /*if (search === "") {
-       //titleMessageEl.innerHTML = "Please, write a title";
-       console.log(`${titleMessageEl}: "Please, write a title"`)
-   } else {
-       */
-       try {
-           //ajax-anrop
-           const dataFetch = await fetch(`https://www.googleapis.com/books/v1/volumes?q=volume:${search}&maxResults=5`);
-         
-           if (!dataFetch.ok) {
-               document.querySelector("#error").innerHTML = "<p>Book not found</p>"
-           }
-           //console.log(`search: ${searchInputEl.id}`);
-     
-           //lägger in datan arrayen
-           const data = await dataFetch.json();
-           console.log(data.items);
+ }
 
-
-           //const moreData = data.items;
-
-          // const search = searchInputEl.value;
-
-           //console.log(books);
-          //
-           // console.log(data);
-
-           // console.log(books);
-           writeOutBook(data.items);
-       } catch(error) {
-           console.log(error);
-
-           document.querySelector("#error").innerHTML = "<p>Something went wrong with the connection. Please, try again later!</p>";
-       }
- //  }
+ function openBook() {
+    book.style.transform = "translateX(50%)";
+    prevBtn.style.transform = "translateX(-180px)";
+    nextBtn.style.transform = "translateX(180px)";
 }
-
-
-
-
-//skriver ut böcker
-function writeOutBook(books) {
-   console.log(books.volumeInfo);
-   
-   //OM BARA VISAR FÖRSTA
-   const book = books[0].volumeInfo;
-
-   bookImageEl.src = book.imageLinks ? book.imageLinks.thumbnail : "Image unavailable";
-   bookTitleEl.innerHTML = book.title ? book.title : "Title not found";
-   bookAuthorEl.innerHTML = book.authors ? book.authors.join(", ") : "Unknown author";
-   bookGenreEl.innerHTML = book.categories ? book.categories.join(", ") : "Not available";
-   bookPagesEl.innerHTML = book.pageCount ? book.pageCount : "Not available";
-   bookPublishedEl.innerHTML = book.publishedDate ? book.publishedDate : "Not available";
-   bookIsbnEl.innerHTML = book.isbn ? book.isbn : "Not available"; //dubbelkolla
-   bookDescriptionEl.innerHTML = book.description ? book.description : "Not available";
-
-   //fixa bokutseendet
-   //fixa en knapp där man istället använder books[1].volumeInfo
-
-   console.log(book);
-   //OM VISAR 5
-   /*displaySearchEl = "";
-
-
-   for(let i = 0; books.length < i; i++) {
-       const newBook =
-       `
-       <article>
-           <h3>Title: </h3>
-           <p>${books[i].title}</p>
-       </article>
-       <article>
-           <h3>Author(s): </h3>
-           <p>${books[i].authors}</p>
-       </article>
-       <article>
-           <h3>Genre: </h3>
-           <p>${books[i].categories}</p>
-       </article>
-       <article>
-           <h3>Page Count: </h3>
-           <p>${books[i].pagecCount}</p>
-       </article>
-       <article>
-           <h3>First published: </h3>
-           <p>${books[i].publishedDate}</p>
-       </article>
-               <article>
-           <h3>ISBN-number: </h3>
-           <p>${books[i].isbn}</p>
-       </article>       
-       <article>
-           <h3>Description: </h3>
-           <p>${books[i].description}</p>
-       </article>
-       `
-       displaySearchEl.innerHTML += newBook;
-       console.log(newBook);
-   }*/
-
-
-  /* if(searchInputEl == book.title) {
-       bookTitleEl.innerHTML = book.title;
-   } else {
-       console.log("Book not found");
-   }*/
-
-
-   console.log("writeoutbook");
-   //console.log(data.title);
-}
-
-
-
-
-/*
  
-lägg in json data i array
-searchInputEl söker efter array.title
-skriv ut boktiteln
-*/
 
+function closeBook() {
+    if(currentLocation <= 1) {
+        book.style.transform = "translateX(0%)";
+    } else {
+        console.log("else " + currentLocation);
+        book.style.transform = "translateX(100%)";
+    }
 
-/*
-//för att söka
-function search() {
-   const searchPhrase = document.getElementById("search").value;
+    prevBtn.style.transform = "translateX(0px)";
+    nextBtn.style.transform = "translateX(0px)";
 }
-*/
+
+function updateBookState(state, isNextPage, books) {
+    let bookHTMLContent;
+    console.log('state :>> ', state);
+    switch(state) {
+        case 0:
+            closeBook(true);
+            paper1.classList.remove("flipped");
+            paper1.style.zIndex = 7; 
+            break;
+        case 1:
+            openBook();
+
+            if(isNextPage) {
+                paper1.classList.add("flipped");
+                paper1.style.zIndex = 1; 
+            }   else {
+                paper2.classList.remove("flipped");
+                paper2.style.zIndex = 6; 
+            }
+
+            bookHTMLContent = renderBookSearchResult(books, 0);
+
+            back1El.innerHTML =  bookHTMLContent.meta;
+            front2El.innerHTML = bookHTMLContent.summary;
+            break;
+        case 2:
+            if(isNextPage) {
+                paper2.classList.add("flipped");
+                paper2.style.zIndex = 2; 
+            } else {
+                paper3.classList.remove("flipped");
+                paper3.style.zIndex = 5; 
+            }
+            bookHTMLContent = renderBookSearchResult(books, 1);
+
+            back2El.innerHTML =  bookHTMLContent.meta;
+            front3El.innerHTML = bookHTMLContent.summary;
+
+            break;
+        case 3:
+            if(isNextPage) {
+                paper3.classList.add("flipped");
+                paper3.style.zIndex = 3; 
+            } else {
+                paper4.classList.remove("flipped");
+                paper4.style.zIndex = 4; 
+            }
+
+            bookHTMLContent = renderBookSearchResult(books, 2);
+
+            back3El.innerHTML =  bookHTMLContent.meta;
+            front4El.innerHTML = bookHTMLContent.summary;
+
+            break;
+        case 4:
+            if(isNextPage) {
+                paper4.classList.add("flipped");
+                paper4.style.zIndex = 4; 
+            } else {
+                paper5.classList.remove("flipped");
+                paper5.style.zIndex = 3; 
+            }
+    
+            bookHTMLContent = renderBookSearchResult(books, 3);
+    
+            back4El.innerHTML =  bookHTMLContent.meta;
+            front5El.innerHTML = bookHTMLContent.summary;
+
+        break;
+        case 5:
+            if(isNextPage) {
+                paper5.classList.add("flipped");
+                paper5.style.zIndex = 5; 
+            } else {
+                openBook();
+                paper6.classList.remove("flipped");
+                paper6.style.zIndex = 2; 
+            }
+
+            bookHTMLContent = renderBookSearchResult(books, 4);
+
+            back5El.innerHTML =  bookHTMLContent.meta;
+            front6El.innerHTML = bookHTMLContent.summary;
+
+        break;
+        case 6:
+            if(isNextPage) {
+                paper6.classList.add("flipped");
+                paper6.style.zIndex = 6; 
+                closeBook(true);
+            }
+            break;
+        default:
+            throw new Error("unkown state");
+    }
+}
+
+function goNextPage() {
+    //om books.items inte har ett värde, avbryt funktionen
+    if(!books.items) {
+        return;
+    }
+    
+    if(currentLocation < maxLocation) {
+        currentLocation++;
+        updateBookState(currentLocation, true, books);
+    }
+}
+
+
+function goPrevPage(){
+    if(!books.items) {
+        return;
+    }
+
+    if (currentLocation > 0) {
+        currentLocation--;
+        updateBookState(currentLocation, false, books);
+    }
+}
+
+//hämtar sökresultatet
+async function getBooks(search) {
+    try {
+        //ajax-anrop
+        const dataFetch = await fetch(`https://www.googleapis.com/books/v1/volumes?q=volume:${search}&maxResults=5`);
+      
+        if (!dataFetch.ok) {
+            document.querySelector("#error").innerHTML = "<p>Book not found</p>"
+        }
+  
+        //lägger in datan arrayen
+        const data = await dataFetch.json();
+        console.log(data);
+
+        return data;
+
+
+    } catch(error) {
+        console.log("booksearch: " + error);
+
+        document.querySelector("#bookError").innerHTML = "<p>Something went wrong with the connection. Please, try again later!</p>";
+    }
+    return null;
+ } 
+
+
+function renderBookSearchResult(books, index) {
+    console.log('books :>> ', books);
+    
+    const book = books.items[index];
+    //const NYTIMES API = bestseller.book.rank
+    const newBook1 =
+                `
+                <img src=${book.volumeInfo.imageLinks.thumbnail /*??  lös bilden*/} alt="book cover" >
+                <article>
+                    <h3>${book.volumeInfo.title ?? "Unavailable"}</h3>
+                </article>
+                <article>
+                    <p><b>Author(s):</b></p>
+                    <span>${book.volumeInfo.authors ? book.volumeInfo.authors.join(", "): "Unavailable"}</span>
+                </article>
+                <article>
+                    <p><b>First published:</b></p>
+                    <span>${book.volumeInfo.publishedDate ?? "Unavailable"}</span>
+                </article>
+                <article>
+                    <p><b>Page Count:</b></p>
+                    <span>${book.volumeInfo.pageCount ?? "Unavailable"}</span>
+                </article>
+                `
+
+                const newBook1Desc = 
+                `
+                <div>
+                    <p><b>Description:</b></p>
+                    <p>${book.volumeInfo.description ?? "Unavailable"}</p>
+                </div>
+                `
+
+                return {meta: newBook1, summary: newBook1Desc};
+}
