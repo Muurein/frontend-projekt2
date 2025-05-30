@@ -1,6 +1,6 @@
 "use strict"
 
-import nyTimesApi from "./secondapi.js";
+// 8import nyTimesApi from "js/secondapi.js";
 
 //platser för utskrift
 const searchInputEl = document.getElementById("search");
@@ -19,6 +19,7 @@ const back5El = document.getElementById("b5");
 const front6El = document.getElementById("f6");
 const back6El = document.getElementById("b6");
 const reviewsDivEl = document.getElementById("reviews");
+const screenWidthEl = document.querySelector("body");
 
 
 //bok-variabler

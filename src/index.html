@@ -3,36 +3,40 @@
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Document</title>
+   <title>Archive of Ohara</title>
 
 
    <link rel="stylesheet" href="css/main.scss">
    <script src="js/main.js" type="module" defer></script>
+   <!--<script src="js/secondapi.js" type="module" defer></script>-->
    <script src="https://kit.fontawesome.com/b0776173a3.js" crossorigin="anonymous"></script>
 </head> 
 <body>
   
    <header>
-        <span class="logo">The Archive of Ohara</span>
+        <span class="logo">The Book Seeker</span>
    </header>
 
-           <!--sökfält - söker efter titel-->
-           <form>
-            <h1>Search for a book title here: </h1>
-            <input id="search" name="search" type="text">
-            <button id="searchButton" class="search-button">Search</button>
-        </form>
+    <!--sökfält - söker efter titel-->
+    <form>
+        <h1>Search for a book title here: </h1>
+        <input id="search" name="search" type="text">
+        <br>
+        <button id="searchButton" class="search-button">Search</button>
+    </form>
 
    <main>
-    
         <!--felmeddelande för när anslutningen till API:t inte fungerar som planerat-->
         <div id="bookError"></div>
+
+        <div></div>
+
         <!--tillbaka-knapp-->
         <button id="prev-btn">
             <i class="fas fa-arrow-circle-left"></i>
         </button>
 
-        <!--bok-->
+        <!--DESKTOP: bok-->
         <div id="book" class="book">
             <!--papper 1-->
             <div id="coverBack">
