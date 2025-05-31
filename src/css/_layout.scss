@@ -34,6 +34,10 @@ header {
         color: rgb(0, 0, 0);
     }
 }
+
+header:hover {
+    animation: funInk 1s infinite;
+}
 /*
 #bookImage {
     width: 130px;
@@ -179,13 +183,24 @@ form h1 {
     color: white;
 }
 
+.f1-effect {
+    width: 350px;
+    height: 500px;
+    opacity: 0;
+    z-index: 1; //anledning till att sidan inte syns??? nej något annat har hänt
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.f1-effect:hover {
+    animation: secretMessage 3s linear;
+}
+
 
 /* Paper flip effect */
 .flipped .front
 .flipped .back 
 {
     transform: rotateY(-180deg);
-    animation: flipped-page 1s linear;
 }
 
 /* "page flipping-buttons*/

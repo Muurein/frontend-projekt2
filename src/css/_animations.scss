@@ -69,3 +69,72 @@
     }
 }
 
+
+@keyframes secretMessage {
+    0% {
+        opacity: 0.16;
+    }
+    10% {
+        opacity: 0.32;
+    }
+    20% {
+        opacity: 0.48;
+    }
+    30% {
+        opacity: 0.65;
+    }
+    40% {
+        opacity: 0.83;
+    }
+    50% {
+        opacity: 1;
+    }
+    60% {
+        opacity: 0.65;
+    }
+    70% {
+        opacity: 0.48;
+    }
+    80% {
+        opacity: 0.32;
+    }
+    90% {
+        opacity: 0.16;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes funInk {
+    from {
+        transform: rotateY(0deg);
+    }
+    to {
+        transform: rotateY(-180deg);
+    }
+    0% {
+        background-color: rgb(223, 70, 70);
+    }
+    14% {
+        background-color: rgb(207, 155, 57);
+    }
+    28% {
+        background-color: rgb(197, 197, 52);
+    }
+    41% {
+        background-color: rgb(47, 187, 47);
+    }
+    55% {
+        background-color: rgb(53, 53, 175);
+    }
+    69% {
+        background-color: rgb(172, 46, 172);
+    }
+    83% {
+        background-color: rgb(204, 126, 139);
+    }
+    100%{
+        background-color: rgb(223, 70, 70);
+    }
+}
