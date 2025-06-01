@@ -1,26 +1,25 @@
 "use strict"
 
-// 8import nyTimesApi from "js/secondapi.js";
+// import nyTimesApi from "js/secondapi.js";
 
 //platser för utskrift
 const searchInputEl = document.getElementById("search");
 const searchButtonEl = document.getElementById("searchButton");
 let displaySearchEl = document.getElementById("displaySearch");
 let titleMessageEl = document.getElementById("writeTitle");
-const back1El = document.getElementById("b1");
-const front2El = document.getElementById("f2");
-const back2El = document.getElementById("b2");
-const front3El = document.getElementById("f3");
-const back3El = document.getElementById("b3");
-const front4El = document.getElementById("f4");
-const back4El = document.getElementById("b4");
-const front5El = document.getElementById("f5");
-const back5El = document.getElementById("b5");
-const front6El = document.getElementById("f6");
-const back6El = document.getElementById("b6");
 const reviewsDivEl = document.getElementById("reviews");
 const screenWidthEl = document.querySelector("body");
 
+//bildspels-variabler
+const itemsSlideshowEL = document.getElementById("slideshow");
+const slidesEl = document.querySelectorAll(".item-show img");
+const slidePrevEl = document.getElementById("back-btn");
+const slideNextEl = document.getElementById("forward-btn");
+const slide1El = document.getElementById("s1");
+const slide2El = document.getElementById("s2");
+const slide3El = document.getElementById("s3");
+const slide4El = document.getElementById("s4");
+const slide5El = document.getElementById("s5");
 
 //bok-variabler
 const prevBtn = document.querySelector("#prev-btn");
@@ -32,23 +31,38 @@ const paper3 = document.querySelector("#p3");
 const paper4 = document.querySelector("#p4");
 const paper5 = document.querySelector("#p5");
 const paper6 = document.querySelector("#p6");
+const back1El = document.getElementById("b1");
+const front2El = document.getElementById("f2");
+const back2El = document.getElementById("b2");
+const front3El = document.getElementById("f3");
+const back3El = document.getElementById("b3");
+const front4El = document.getElementById("f4");
+const back4El = document.getElementById("b4");
+const front5El = document.getElementById("f5");
+const back5El = document.getElementById("b5");
+const front6El = document.getElementById("f6");
+const back6El = document.getElementById("b6");
 
 
-// Business Logic
+//övrigt
 let currentLocation = 0;
 let numOfPapers = 7;
 let maxLocation = numOfPapers + 1;
 
 
-// eventlyssnare
+//eventlyssnare
 searchButtonEl.addEventListener("click", e => {initializeBooks(e)});
+slidePrevEl.addEventListener("click", () => goPrevSlide());
+slideNextEl.addEventListener("click", () => goNextSlide());
 prevBtn.addEventListener("click", () => goPrevPage());
 nextBtn.addEventListener("click", () => goNextPage());
 
 
+//arrayer
+let slideIndex = [0];
 let books = [];
 
-//hämtar google books api
+//hämtar sökresultatet från formuläret
 async function initializeBooks(event){
     event.preventDefault();
 
@@ -61,15 +75,16 @@ async function initializeBooks(event){
 
     currentLocation = 0;
     
-    //tar användaren till nästa sida samt hämtar NYtimes-api:t efter en check
+    //tar användaren till nästa sida eller bild samt hämtar NYtimes-api:t efter en check
     if(books != null) {
+        goNextSlide();
         goNextPage();
         initializeReviews();
     }
 
 }
 
- //hämtar sökresultatet från formuläret
+//hämtar google books api
 async function getBooks(search) {
     try {
         //ajax-anrop
@@ -132,7 +147,44 @@ function closeBook() {
     nextBtn.style.transform = "translateX(0px)";
 }
 
-//bestämmer vad som ska hända beroende på vilken sida man är på
+//bildspel: bestämmer vad som ska hända beroende på vilken sida man är på
+function updateSlideState(state, isNextPage, books) {
+    let slidesHTMLContent;
+
+    switch(state) {
+        case 0:
+            break;
+        case 1:
+            slidesHTMLContent = renderBookSearchResult(books, 0);
+
+            slide1El.innerHTML =  slidesHTMLContent.meta + slidesHTMLContent.summary;
+            break;
+        case 2:
+            slidesHTMLContent = renderBookSearchResult(books, 1);
+
+            slide2El.innerHTML =  slidesHTMLContent.meta + slidesHTMLContent.summary;
+            break;
+        case 3:
+            slidesHTMLContent = renderBookSearchResult(books, 2);
+
+            slide3El.innerHTML =  slidesHTMLContent.meta + slidesHTMLContent.summary;
+            break;
+        case 4:
+            slidesHTMLContent = renderBookSearchResult(books, 3);
+
+            slide4El.innerHTML =  slidesHTMLContent.meta + slidesHTMLContent.summary;
+            break;
+        case 5:
+            slidesHTMLContent = renderBookSearchResult(books, 4);
+
+            slide5El.innerHTML =  slidesHTMLContent.meta + slidesHTMLContent.summary;
+            break;
+        default:
+            throw new Error("unkown state");
+    }   
+}
+
+//bok: bestämmer vad som ska hända beroende på vilken sida man är på
 function updateBookState(state, isNextPage, books) {
     let bookHTMLContent;
 
@@ -226,6 +278,19 @@ function updateBookState(state, isNextPage, books) {
     }
 }
 
+//gå till nästa bild i bildspelet
+function goNextSlide() {
+    slideIndex++;
+    displaySlides(slideIndex);
+}
+
+function goPrevSlide() {
+    slideIndex--;
+    displaySlides(slideIndex);
+}
+
+
+
 //gå till nästa sida
 function goNextPage() {
     //om books.items inte har ett värde, avbryt funktionen
@@ -251,7 +316,26 @@ function goPrevPage(){
     }
 }
 
-//bygger upp hur innehållet/sökresultatet ska se ut på sidan
+//visar bildspelet
+function displaySlides(index) {
+    //reset slideindex when the end of the slideshow is reached
+    if (index >= slidesEl.length) {
+        slideIndex = 0;
+    } else if (index < 0) {
+        slideIndex = slidesEl.length - 1;
+    }
+
+    //stop displaying current image when switching to another
+    slidesEl.forEach(slide => {
+        slide.classList.remove("showSlide");
+    });
+    //add the class to the next slide so it displays
+    slidesEl[slideIndex].classList.add("showSlide");
+}
+
+
+
+//bygger upp hur innehållet/sökresultatet ska visas
 function renderBookSearchResult(books, index) {
 
     
