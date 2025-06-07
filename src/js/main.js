@@ -1,27 +1,26 @@
 "use strict"
 
-// import nyTimesApi from "js/secondapi.js";
+import nyTimesApi from "./secondapi.js";
 
-//platser för utskrift
+/**
+ * Platser där text skrivs ut som gäller för både små och stora skärmar.
+ */
 const searchInputEl = document.getElementById("search");
 const searchButtonEl = document.getElementById("searchButton");
 let displaySearchEl = document.getElementById("displaySearch");
 let titleMessageEl = document.getElementById("writeTitle");
+
+
+/**
+ * Variabler för mobilversionen.
+ */
 const reviewsDivEl = document.getElementById("reviews");
-const screenWidthEl = document.querySelector("body");
+const reviewsH2El = document.getElementById("reviewsH2");
+let displayOnPhoneEl = document.getElementById("displayOnPhone");
 
-//bildspels-variabler
-const itemsSlideshowEL = document.getElementById("slideshow");
-const slidesEl = document.querySelectorAll(".item-show img");
-const slidePrevEl = document.getElementById("back-btn");
-const slideNextEl = document.getElementById("forward-btn");
-const slide1El = document.getElementById("s1");
-const slide2El = document.getElementById("s2");
-const slide3El = document.getElementById("s3");
-const slide4El = document.getElementById("s4");
-const slide5El = document.getElementById("s5");
-
-//bok-variabler
+/**
+ * Variabler för desktop-versionen, dvs blädderboken.
+ */
 const prevBtn = document.querySelector("#prev-btn");
 const nextBtn = document.querySelector("#next-btn");
 const book = document.querySelector("#book");
@@ -42,31 +41,41 @@ const front5El = document.getElementById("f5");
 const back5El = document.getElementById("b5");
 const front6El = document.getElementById("f6");
 const back6El = document.getElementById("b6");
+let books = [];
 
 
-//övrigt
+/**
+ * Övriga variabler.
+ */
 let currentLocation = 0;
 let numOfPapers = 7;
-let maxLocation = numOfPapers + 1;
+let maxLocationBooks = numOfPapers + 1;
 
 
-//eventlyssnare
+/**
+
+ * Eventlyssnare
+ */
 searchButtonEl.addEventListener("click", e => {initializeBooks(e)});
-slidePrevEl.addEventListener("click", () => goPrevSlide());
-slideNextEl.addEventListener("click", () => goNextSlide());
 prevBtn.addEventListener("click", () => goPrevPage());
 nextBtn.addEventListener("click", () => goNextPage());
 
 
-//arrayer
-let slideIndex = [0];
-let books = [];
-
-//hämtar sökresultatet från formuläret
+/**
+ * Hämtar sökresultatet från formuläret, dvs hämtar användarens sökfras/input.
+ * @param {string} event för att se till att användarens sökfras/input inte skickas iväg via formuläret.
+ * 
+ * Tar användaren till funktionen goPrevPage om i är större än currentLocation.
+ * Säger att värdet på currentLocation ska vara 0 från början för att switch-satsen i funktionen updateBookState ska stämma.
+ * Tar användaren till funktionen goNextPage, hämtar datan från NYTimes API:t och hämtar datan som ska synas i mobilversionen sålänge
+ * som arrayen books (datan från Google Books API) har ett värde
+ */
 async function initializeBooks(event){
     event.preventDefault();
 
+    console.log("sökt");
     const search = searchInputEl.value;
+   // slides = await getBooks(search);
     books = await getBooks(search);
 
     for(let i = 0; i < currentLocation; i++) {
@@ -75,16 +84,22 @@ async function initializeBooks(event){
 
     currentLocation = 0;
     
-    //tar användaren till nästa sida eller bild samt hämtar NYtimes-api:t efter en check
+    //tar användaren till nästa sida, hämtar NYtimes-api:t efter en check samt hänvisar till hur
+    //innehållet ska presenteras i mobilversionen
     if(books != null) {
-        goNextSlide();
         goNextPage();
         initializeReviews();
+        phoneBookState(books);
     }
 
 }
 
-//hämtar google books api
+/**
+ * 
+ * @param {string} search som är användarens input i formuläret.
+ * @returns {array} data om fetchen gick som planerat.
+ * @returns {null} null om fetchen inte gick som planerat.
+ */
 async function getBooks(search) {
     try {
         //ajax-anrop
@@ -109,7 +124,10 @@ async function getBooks(search) {
     return null;
  } 
 
-//hämtar NYtimes-api:t från den andra JS-filen
+/**
+ * Hämtar NYTimes-API:t från den andra JS-filen (secondapi.js) och kopplar den med variabeln searchInputEl
+ * som styr användarens input i sökfältet. 
+ */
  async function initializeReviews() { 
     let reviewInfo = new nyTimesApi();
 
@@ -126,16 +144,28 @@ async function getBooks(search) {
 
     reviewsDivEl.innerHTML = newReview;
 
+    if (reviewsResult.response.docs.length !== 0) {
+        reviewsH2El.style.display = "block";
+        reviewsH2El.style.backgroundColor = "base.$color-primary";
+        reviewsDivEl.style.backgroundColor = "base.$color-primary";
+    } else {
+        reviewsH2El.style.display = "none";
+    }
 }
 
-//öppnar boken, stylar knappar därefter
+
+/**
+ * Öppnar boken, stylar knappar därefter.
+ */
  function openBook() {
     book.style.transform = "translateX(50%)";
     prevBtn.style.transform = "translateX(-180px)";
     nextBtn.style.transform = "translateX(180px)";
 }
  
-//stänger boken, stylar bok och knappar därefter
+/**
+ * Stänger boken, stylar bok och knappar därefter.
+ */
 function closeBook() {
     if(currentLocation <= 1) {
         book.style.transform = "translateX(0%)";
@@ -147,44 +177,19 @@ function closeBook() {
     nextBtn.style.transform = "translateX(0px)";
 }
 
-//bildspel: bestämmer vad som ska hända beroende på vilken sida man är på
-function updateSlideState(state, isNextPage, books) {
-    let slidesHTMLContent;
 
-    switch(state) {
-        case 0:
-            break;
-        case 1:
-            slidesHTMLContent = renderBookSearchResult(books, 0);
-
-            slide1El.innerHTML =  slidesHTMLContent.meta + slidesHTMLContent.summary;
-            break;
-        case 2:
-            slidesHTMLContent = renderBookSearchResult(books, 1);
-
-            slide2El.innerHTML =  slidesHTMLContent.meta + slidesHTMLContent.summary;
-            break;
-        case 3:
-            slidesHTMLContent = renderBookSearchResult(books, 2);
-
-            slide3El.innerHTML =  slidesHTMLContent.meta + slidesHTMLContent.summary;
-            break;
-        case 4:
-            slidesHTMLContent = renderBookSearchResult(books, 3);
-
-            slide4El.innerHTML =  slidesHTMLContent.meta + slidesHTMLContent.summary;
-            break;
-        case 5:
-            slidesHTMLContent = renderBookSearchResult(books, 4);
-
-            slide5El.innerHTML =  slidesHTMLContent.meta + slidesHTMLContent.summary;
-            break;
-        default:
-            throw new Error("unkown state");
-    }   
-}
-
-//bok: bestämmer vad som ska hända beroende på vilken sida man är på
+/**
+ * 
+ * Funktionen används bara i desktop-versionen. Uppdaterar innehållet i boken.
+ * Vilket state som switch-satsen ska gå efter, kan ses som vilken sida, eller uppslag, i boken som är öppen.
+ * @param {number} state 
+ * 
+ * Om parametern är true betyder det att det är nästa och om den är false är det föregående sida. 
+ * @param {boolean} isNextPage 
+ * 
+ * Datan från Google Books API.
+ * @param {array} books 
+ */
 function updateBookState(state, isNextPage, books) {
     let bookHTMLContent;
 
@@ -278,33 +283,34 @@ function updateBookState(state, isNextPage, books) {
     }
 }
 
-//gå till nästa bild i bildspelet
-function goNextSlide() {
-    slideIndex++;
-    displaySlides(slideIndex);
-}
 
-function goPrevSlide() {
-    slideIndex--;
-    displaySlides(slideIndex);
-}
-
-
-
-//gå till nästa sida
+/**
+ * Gäller desktop-versionen.
+ * 
+ * @returns {null} null om books.items, dvs datan från Google Books API, inte har ett värde och avbryter därmed funktionen.
+ * 
+ * Annars går funktionen vidare för att se om currentLocation är mindre än maxLocationBooks, om det stämmer läggs
+ * det på 1 till currentLocations väde och sidan bläddras framåt.
+ */
 function goNextPage() {
-    //om books.items inte har ett värde, avbryt funktionen
     if(!books.items) {
         return;
     }
     
-    if(currentLocation < maxLocation) {
+    if(currentLocation < maxLocationBooks) {
         currentLocation++;
         updateBookState(currentLocation, true, books);
     }
 }
 
-//gå till föregående sida
+/**
+ * Gäller desktop-versionen.
+ * 
+ * @returns {null} null om books.items, dvs datan från Google Books API, inte har ett värde och avbryter därmed funktionen.
+ * 
+ * Annars går funktionen vidare för att se om currentLocation är större än 0, om det stämmer subtraheras
+ * currentLocations värde med 1 och sidan bläddras bakåt.
+ */
 function goPrevPage(){
     if(!books.items) {
         return;
@@ -316,29 +322,59 @@ function goPrevPage(){
     }
 }
 
-//visar bildspelet
-function displaySlides(index) {
-    //reset slideindex when the end of the slideshow is reached
-    if (index >= slidesEl.length) {
-        slideIndex = 0;
-    } else if (index < 0) {
-        slideIndex = slidesEl.length - 1;
-    }
 
-    //stop displaying current image when switching to another
-    slidesEl.forEach(slide => {
-        slide.classList.remove("showSlide");
-    });
-    //add the class to the next slide so it displays
-    slidesEl[slideIndex].classList.add("showSlide");
+/**
+ * Hur datan ska presenteras i mobilversionen.
+ * @param {array} books 
+ * @param {number} index 
+ */
+function phoneBookState(books, index) {
+    displayOnPhoneEl.innerHTML = "";
+    console.log(books.items, index);
+
+    books.items.forEach((book) => {
+        const newBook = 
+                `
+                    <img src=${book.volumeInfo.imageLinks.thumbnail ? book.volumeInfo.imageLinks.thumbnail: "Image unavailable"} alt="book cover" >
+                    <article>
+                        <h3>${book.volumeInfo.title ?? "Unavailable"}</h3>
+                    </article>
+                    <article>
+                        <h4><b>Author(s):</b></h4>
+                        <span>${book.volumeInfo.authors ? book.volumeInfo.authors.join(", "): "Unavailable"}</span>
+        -            </article>
+                    <article>
+                        <h4><b>First published:</b></h4>
+                        <span>${book.volumeInfo.publishedDate ?? "Unavailable"}</span>
+                    </article>
+                    <article>
+                        <h4><b>Page Count:</b></h4>
+                        <span>${book.volumeInfo.pageCount ?? "Unavailable"}</span>
+                    </article>
+                    <article>
+                        <h4><b>Description:</b></h4>
+                        <h4>${book.volumeInfo.description ?? "Unavailable"}</h4>
+                    </article>
+                `
+        displayOnPhoneEl.innerHTML += newBook;
+    })
+
+
 }
 
+/**
+ * 
+ * Gäller desktop-versionen.
+ * Bygger upp hur innehållet/sökresultatet ska visas.
+ * 
+ * @param {array} books datan från Google Books API.
+ * @param {number} index , vilket index i books som gäller.
+ * @returns {object} meta och summary. Detta delas upp då metas värde kommer synas på den vänstra sidan i boken
+ * och summarys värde kommer synas på den högra. 
+ */
 
-
-//bygger upp hur innehållet/sökresultatet ska visas
 function renderBookSearchResult(books, index) {
 
-    
     const book = books.items[index];
     const newBook1 =
                 `
