@@ -1,0 +1,5 @@
+# The Books Seeker
+
+## Syfte
+The Book Seeker ska vara en sida där man kan söka efter böcker (genom Google Books API)
+och få recensioner baserade på den sökningen (via New York Times Article Search API)

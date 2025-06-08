@@ -10,12 +10,10 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: base.$color-background;
 }
 
 /* Header och logga */
 header {
-    background-color: base.$color-primary;
     width: 70%;
     height: 80px;
     text-align: center;
@@ -35,9 +33,10 @@ header {
     }
 }
 
-header:hover {
-    animation: funInk 2s infinite;
-}
+    header:active {
+        animation: funInk 2s infinite;
+    }
+
 
 /* main */
 main {
@@ -51,7 +50,6 @@ main {
 
 /* formulär */
 form {
-    background-color: base.$color-primary;
     width: 60%;
     height: auto;
     text-align: center;
@@ -69,7 +67,7 @@ form h1 {
 
 /* sök-knapp */
 #searchButton {
-    @include bigButton(base.$color-secondary-lighter);
+    @include bigButton();
     margin-top: 7%;
 }
 
@@ -84,7 +82,6 @@ form h1 {
 }
 
 #displayOnPhone article {
-    background-color: base.$color-primary;
     text-align: center;
     padding-bottom: 1em;
     padding-left: 1.5em;
@@ -115,7 +112,6 @@ form h1 {
 
 /* Rescensioner */
 #reviews {
-    background-color: base.$color-primary;
     width: 60%;
     height: auto;
     text-align: center;
@@ -141,7 +137,6 @@ form h1 {
 
 /* footer */
 footer {
-    background-color: base.$color-primary;
     width: 100%;
     height: 70px;
     margin-top: 30%;
@@ -149,11 +144,87 @@ footer {
     padding-top: 6%;
 } 
 
+/*ljust tema*/
+@media (prefers-color-scheme: light) {
+    body {
+        background-color: base.$color-background;
+    }
+
+    header, form, footer, #displayOnPhone article, #reviews {
+        background-color: base.$color-primary;
+        color: black;
+    }
+
+    #searchButton {
+        background-color: base.$color-secondary-lighter;
+        color: black;
+    }
+
+    #searchButton:hover {
+        background-color: base.$color-primary-darker;
+    }
+
+    #next-btn, #prev-btn {
+        color: base.$color-secondary;
+    }
+
+    i:hover {
+        color: base.$color-primary;
+    }
+
+    .front {
+        border-left: 3px solid base.$color-background;
+    }
+
+    .front, .back {
+        background-color: base.$color-primary;
+        color: black;
+    }
+
+}
+
+/*mörkt tema*/
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: black;
+    }
+
+    header, form, footer, #displayOnPhone article, #reviews {
+        background-color: base.$color-secondary;
+        color: white;
+    }
+
+    #searchButton {
+        background-color: base.$color-background;
+        color: white
+    }
+
+    #searchButton:hover, i:hover  {
+        background-color: base.$color-primary-darker;
+    }
+
+    #next-btn, #prev-btn {
+        color: base.$color-background;
+    }
+
+    .front {
+        border-left: 3px solid black;
+    }
+
+    .front, .back {
+        background-color: base.$color-secondary;
+        color: white;
+    }
+
+
+}
+
+/*TABLET*/
 @media (min-width: 600px) {
 
 }
 
-
+/*DESKTOP*/
 @media (min-width: 1024px) {
 
     header {
@@ -164,12 +235,11 @@ footer {
         margin-top: 3em;
     }
 
+
     /* formulär */
     form {
-        background-color: base.$color-primary;
         width: 37.5em;
         height: auto;
-        text-align: center;
         padding: 1%;
         padding-bottom: 2%;
         margin-bottom: 1em;;
@@ -190,7 +260,7 @@ footer {
     }
 
     #next-btn, #prev-btn {
-        @include smallButton(base.$color-secondary);
+        @include smallButton();
         display: inline-block;
         margin-right: 10px;
         margin-left: 10px;
@@ -200,9 +270,6 @@ footer {
         font-size: 50px;
     }
 
-    i:hover {
-        color: base.$color-primary;
-    }
 
     /*DESKTOP: bok */
     .book {
@@ -217,9 +284,9 @@ footer {
     .flipped .front,
     .flipped .back {
         transform: rotateY(-180deg);
-        animation-name: flipped-page
     }
 
+    /*bokens innehåll*/
     .book img {
         width: 100px;
         height: 150px;
@@ -233,13 +300,13 @@ footer {
         top: 0;
         left: 0;
         perspective: 1500px;
+
     }
     
     .front {
         @include papers;
         z-index: 1; 
         backface-visibility: hidden;
-        border-left: 3px solid base.$color-background;
         overflow-y: scroll;
     }
     
@@ -276,6 +343,7 @@ footer {
         margin-top: -1.5em;
     }
     
+    /*omslag*/
     #f1 {
         background-color: base.$color-secondary;
         color: white;

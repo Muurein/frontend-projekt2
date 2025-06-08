@@ -1,24 +1,24 @@
-@keyframes flipped-page {
-    //blur
-    16% {
-        opacity: 0.16;
-    }
-    32% {
-        opacity: 0.32;
-    }
-    48% {
-        opacity: 0.48;
-    }
-    65% {
-        opacity: 0.65;
-    }
-    83% {
-        opacity: 0.83;
-    }
-    100% {
-        opacity: 1;
-    }
-}
+// @keyframes flipped-page {
+//     //blur
+//     16% {
+//         opacity: 0.16;
+//     }
+//     32% {
+//         opacity: 0.32;
+//     }
+//     48% {
+//         opacity: 0.48;
+//     }
+//     65% {
+//         opacity: 0.65;
+//     }
+//     83% {
+//         opacity: 0.83;
+//     }
+//     100% {
+//         opacity: 1;
+//     }
+// }
 
 @keyframes searchGlow {
     0% {
@@ -85,34 +85,79 @@
 }
 
 @keyframes funInk {
-    from {
-        transform: rotateY(0deg);
-    }
-    to {
-        transform: rotateY(-180deg);
-    }
     0% {
         background-color: rgb(223, 70, 70);
+        transform: rotateY(0deg);
+        height: 80px;
     }
     14% {
         background-color: rgb(207, 155, 57);
+        transform: rotateY(-60deg);
+        height: 40px;
     }
     28% {
         background-color: rgb(197, 197, 52);
+        transform: rotateY(-120deg);
+        height: 20px;
     }
     41% {
         background-color: rgb(47, 187, 47);
+        transform: rotateY(-180deg);
+        height: 0px;
     }
     55% {
         background-color: rgb(53, 53, 175);
+        transform: rotateY(-180deg);
+        height: 10px;
     }
     69% {
         background-color: rgb(172, 46, 172);
+        transform: rotateY(-120deg);
+        height: 20px;
     }
     83% {
         background-color: rgb(204, 126, 139);
+        transform: rotateY(-60deg);
+        height: 40px;
     }
     100%{
         background-color: rgb(223, 70, 70);
+        height: 80px;
+        transform: rotateY(-0deg);
     }
 }
+
+    @keyframes carousel {
+    0% {
+        left: 0px;
+        right: 0px;
+    }
+    14% {
+        left: 0px;
+        right: 150px;
+    }
+    28% {
+        left: 150px;
+        right: 150px;
+    }
+    41% {
+        left: 0px;
+        right: 150px;
+    }
+    55% {
+        left: 0px;
+        right: 0px;
+    }
+    69% {
+        top: 50px;
+        bottom: 0px;
+    }
+    83% {
+        top: 0px;
+        bottom: 50px;
+    }
+    100%{
+        top: 0px;
+        bottom: 0px;
+    }
+    }

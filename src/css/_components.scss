@@ -1,7 +1,6 @@
 @use "base";
 
-@mixin bigButton($bgColor) {
-    background-color: $bgColor;
+@mixin bigButton() {
     color: black;
     width: 65px;
     height: 30px;
@@ -10,9 +9,8 @@
     cursor: pointer;
 }
 
-@mixin smallButton($color) {
+@mixin smallButton() {
     background-color: transparent;
-    color: $color;
     border: none;
     cursor: pointer;
     transition: transform 0.5s;
@@ -20,7 +18,6 @@
 }
 
 @mixin papers {
-    background-color: white;
     position: absolute;
     width: 100%;
     height: 100%;

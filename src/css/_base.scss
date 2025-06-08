@@ -1,5 +1,6 @@
 //lightmode colors
 $color-primary:  rgb(238, 238, 238);
+$color-primary-darker: ($color-primary, 70%);
 $color-secondary: rgb(54, 33, 14);
 $color-secondary-lighter: lighten($color-secondary, 30%);
 $color-background: rgb(111, 178, 94);
