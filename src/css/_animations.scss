@@ -126,38 +126,3 @@
         transform: rotateY(-0deg);
     }
 }
-
-    @keyframes carousel {
-    0% {
-        left: 0px;
-        right: 0px;
-    }
-    14% {
-        left: 0px;
-        right: 150px;
-    }
-    28% {
-        left: 150px;
-        right: 150px;
-    }
-    41% {
-        left: 0px;
-        right: 150px;
-    }
-    55% {
-        left: 0px;
-        right: 0px;
-    }
-    69% {
-        top: 50px;
-        bottom: 0px;
-    }
-    83% {
-        top: 0px;
-        bottom: 50px;
-    }
-    100%{
-        top: 0px;
-        bottom: 0px;
-    }
-    }

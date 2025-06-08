@@ -222,6 +222,24 @@ footer {
 /*TABLET*/
 @media (min-width: 600px) {
 
+    #displayOnPhone article {
+        padding-left: 3em;
+        padding-right: 3em;
+    }
+
+    #reviews {
+        width: 62%;
+    }
+
+    #reviewsH2 {
+        width: 64.5%;
+    }
+
+    footer {
+        padding-top: 3%;
+        margin-top: 8%;
+    }
+
 }
 
 /*DESKTOP*/
@@ -413,6 +431,7 @@ footer {
         width: 30%;
     }
 
+    /*FOOTER*/
     footer {
         padding-top: 2%;
         margin-top: 3%;
