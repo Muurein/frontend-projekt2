@@ -1,3 +1,7 @@
+/**
+ * @description Här i hanteras Google Books API:t samt sökfunktionen.
+ */
+
 "use strict"
 
 import nyTimesApi from "./secondapi.js";
@@ -146,8 +150,6 @@ async function getBooks(search) {
 
     if (reviewsResult.response.docs.length !== 0) {
         reviewsH2El.style.display = "block";
-        reviewsH2El.style.backgroundColor = "base.$color-primary";
-        reviewsDivEl.style.backgroundColor = "base.$color-primary";
     } else {
         reviewsH2El.style.display = "none";
     }
@@ -335,8 +337,9 @@ function phoneBookState(books, index) {
     books.items.forEach((book) => {
         const newBook = 
                 `
-                    <img src=${book.volumeInfo.imageLinks.thumbnail ? book.volumeInfo.imageLinks.thumbnail: "Image unavailable"} alt="book cover" >
+                    <div>
                     <article>
+                        <img src=${book.volumeInfo.imageLinks.thumbnail ? book.volumeInfo.imageLinks.thumbnail: "Image unavailable"} alt="book cover" >
                         <h3>${book.volumeInfo.title ?? "Unavailable"}</h3>
                     </article>
                     <article>
@@ -353,8 +356,9 @@ function phoneBookState(books, index) {
                     </article>
                     <article>
                         <h4><b>Description:</b></h4>
-                        <h4>${book.volumeInfo.description ?? "Unavailable"}</h4>
+                        <p>${book.volumeInfo.description ?? "Unavailable"}</p>
                     </article>
+                    </div>
                 `
         displayOnPhoneEl.innerHTML += newBook;
     })

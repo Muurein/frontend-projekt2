@@ -1,5 +1,13 @@
+/**
+ * @description Den här filen hanterar Ney York Times API:t.
+ */
+
 "use strict";
 
+/**
+ * Hämtar New York Times Article Search API:t och kopplar ihop det med användarens sökning.
+ * @return {array} result, den hämtade datan från apit:t.
+ */
 //hämtar New York Times article search api
 class nyTimesApi {
     constructor () {

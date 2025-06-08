@@ -71,7 +71,7 @@
 100C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\node_modules\is-number133912991320186754 1
 99C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\node_modules\escalade133912991322080540 1
 122C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\node_modules\caniuse-lite\data\regions\VU.js133912991338669040 0
-82C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\dist133931770282553505 1
+82C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\dist133938635561440650 1
 146C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\node_modules\lmdb\dependencies\lmdb-data-v1\libraries\liblmdb\midl.c133912991326254921 0
 97C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\node_modules\@babel133912991306937894 1
 131C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\node_modules\htmlnano\lib\modules\removeUnusedCss.cjs133912991324535378 0
@@ -108,7 +108,7 @@
 135C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\node_modules\@swc\helpers\esm\_class_private_field_set.js133912991329249224 0
 125C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\node_modules\htmlnano\docs\docusaurus.config.js133912991325004649 0
 113C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\node_modules\js-tokens\CHANGELOG.md133912991319446443 0
-92C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\src\index.html133931768242118054 0
+92C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\src\index.html133938633474981504 0
 118C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\node_modules\@swc\helpers\cjs\_using.cjs133912991328402285 0
 118C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\node_modules\lmdb\src\ordered-binary.cpp133912991328219859 0
 118C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\node_modules\@parcel\transformer-svg\src133912991321850594 1
@@ -121,7 +121,7 @@
 135C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\node_modules\caniuse-lite\data\features\css-namespaces.js133912991330959072 0
 134C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\node_modules\caniuse-lite\data\features\link-icon-png.js133912991335736244 0
 107C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\node_modules\escalade\license133912991318831291 0
-92C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\src\js\main.js133931192240725600 0
+92C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\src\js\main.js133938605854104748 0
 145C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\node_modules\@parcel\package-manager\test\fixtures\packages\foo-2.0133912991325211035 1
 142C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\node_modules\caniuse-lite\data\features\contentsecuritypolicy.js133912991329001013 0
 122C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\node_modules\cosmiconfig\dist\merge.d.ts.map133912991324757171 0
@@ -137,7 +137,7 @@
 156C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\node_modules\node-gyp-build-optional-packages\node_modules\detect-libc\LICENSE133912991319438508 0
 110C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\node_modules\readdirp\index.d.ts133916386683838209 0
 150C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\node_modules\lmdb\dependencies\lmdb-data-v1\libraries\liblmdb\mdb_dump.1133912991323984958 0
-97C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\src\js\secondapi.js133930251904619902 0
+97C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\src\js\secondapi.js133938606756047573 0
 113C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\node_modules\@parcel\transformer-js133912991321521213 1
 100C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\src\images\standIn.png133931767255500377 0
 100C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\node_modules\callsites133912991320631573 1
@@ -178,12 +178,12 @@
 122C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\node_modules\caniuse-lite\data\regions\GW.js133912991334179568 0
 105C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\node_modules\ordered-binary133912991322675066 1
 105C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\node_modules\srcset\license133912991318866274 0
-102C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\src\css\_components.scss133931216183537762 0
+102C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\src\css\_components.scss133938630080468993 0
 115C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\node_modules\@parcel\utils\test\input133912991325804633 1
 122C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\node_modules\caniuse-lite\data\regions\BE.js133912991326249397 0
 116C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\node_modules\semver\ranges\simplify.js133912991325352647 0
 109C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\node_modules\@parcel\events\src133912991322410263 1
-98C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\src\css\_layout.scss133931771461498781 0
+98C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\src\css\_layout.scss133938635837068209 0
 108C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\node_modules\env-paths\license133912991318866274 0
 125C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\node_modules\lmdb\dependencies\lz4\lib\xxhash.h133912991329150662 0
 109C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\node_modules\@parcel\fs\LICENSE133912991318997031 0
@@ -1722,7 +1722,7 @@
 124C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\node_modules\@parcel\core\src\public\Bundle.js133912991325095941 0
 131C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\node_modules\caniuse-lite\data\features\pdf-viewer.js133912991336751847 0
 158C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\node_modules\msgpackr-extract\node_modules\.bin\node-gyp-build-optional-packages133912991341914874 0
-113C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\dist\frontend-projekt2.8c1c22dc.css133931770282516896 0
+113C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\dist\frontend-projekt2.8c1c22dc.css133938635561405643 0
 171C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\node_modules\msgpackr-extract\node_modules\.bin\node-gyp-build-optional-packages-optional.cmd133912991341924809 0
 135C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\node_modules\caniuse-lite\data\features\iframe-sandbox.js133912991334724514 0
 122C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\node_modules\caniuse-lite\data\regions\GA.js133912991333827272 0
@@ -2511,7 +2511,7 @@
 128C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\node_modules\dom-serializer\lib\esm\index.d.ts.map133912991322210588 0
 129C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\node_modules\@swc\helpers\esm\_apply_decs_2203_r.js133912991328595126 0
 122C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\node_modules\dom-serializer\lib\esm\index.js133912991320716442 0
-112C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\dist\frontend-projekt2.b828852a.js133931768244310694 0
+112C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\dist\frontend-projekt2.b828852a.js133938633052988975 0
 126C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\node_modules\dom-serializer\lib\esm\package.json133912991321441390 0
 113C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\node_modules\detect-libc\.npmignore133912991319486342 0
 116C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\node_modules\caniuse-lite\package.json133912991339325577 0
@@ -4037,7 +4037,7 @@
 122C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\node_modules\@parcel\plugin\src\PluginAPI.js133912991320099349 0
 122C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\node_modules\@parcel\plugin\lib\PluginAPI.js133912991319591744 0
 116C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\node_modules\@parcel\packager-wasm\lib133912991320893071 1
-103C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\dist\standIn.04264b6c.png133931768244048718 0
+103C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\dist\standIn.04264b6c.png133932502143090766 0
 120C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\node_modules\@parcel\packager-wasm\LICENSE133912991318975998 0
 152C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\node_modules\@parcel\graph\test\integration\adjacency-list-shared-array.js133912991319669050 0
 139C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\node_modules\@parcel\packager-wasm\src\wasm-sourcemap.js.flow133912991319601721 0
@@ -4364,6 +4364,6 @@
 118C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\node_modules\.bin\update-browserslist-db133912991341924809 0
 122C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\node_modules\.bin\update-browserslist-db.ps1133912991341924809 0
 112C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\dist\frontend-projekt2.59712999.js133912995847906728 0
-117C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\dist\frontend-projekt2.8c1c22dc.css.map133931770282548222 0
-116C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\dist\frontend-projekt2.b828852a.js.map133931768244335716 0
-93C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\dist\index.html133931768244455508 0
+117C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\dist\frontend-projekt2.8c1c22dc.css.map133938635561430675 0
+116C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\dist\frontend-projekt2.b828852a.js.map133938633053008927 0
+93C:\Users\Amanda\Documents\Webbutveckling 2024-2026\Frontend\frontend-projekt2\dist\index.html133938633476989131 0

@@ -10,11 +10,13 @@
     cursor: pointer;
 }
 
-@mixin smallButton($bgColor) {
-    background-color: $bgColor;
+@mixin smallButton($color) {
+    background-color: transparent;
+    color: $color;
     border: none;
     cursor: pointer;
     transition: transform 0.5s;
+    z-index: 20;
 }
 
 @mixin papers {

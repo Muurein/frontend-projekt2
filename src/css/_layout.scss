@@ -23,7 +23,7 @@ header {
     margin-right: auto;
     margin-top: 6%;
     margin-bottom: 6%;
-    padding-top: 10px; 
+    padding-top: 10px;
 
 
     .logo {
@@ -31,18 +31,15 @@ header {
         font-size: 32px;
         font-weight: bold;
         color: rgb(0, 0, 0);
+        margin-top: 15px;
     }
 }
 
 header:hover {
-    animation: funInk 1s infinite;
+    animation: funInk 2s infinite;
 }
-/*
-#bookImage {
-    width: 130px;
-    height: 200px;
-}*/
 
+/* main */
 main {
     max-width: 70%;
     height: auto;
@@ -70,29 +67,7 @@ form h1 {
     margin-bottom: 6%;
 }
 
-
-/*
-#displaySearch {
-    background-color: base.$color-primary;
-    padding: 6%;
-    margin-top: 10%;
-    width: 100%;
-    text-align: center;
-}
-
-#displaySearch h2 {
-    margin-bottom: 6%;
-}
-
-#displaySearch article {
-    margin: 5%;
-}
-
-#displaySearch div {
-    margin: 5%;
-    margin-bottom: 35%;
-}*/
-
+/* sök-knapp */
 #searchButton {
     @include bigButton(base.$color-secondary-lighter);
     margin-top: 7%;
@@ -103,7 +78,26 @@ form h1 {
 }
 
 
+/* MOBIL:  utskriftsområde */
+#displayOnPhone div {
+    margin-bottom: 3em;
+}
 
+#displayOnPhone article {
+    background-color: base.$color-primary;
+    text-align: center;
+    padding-bottom: 1em;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+}
+
+#displayOnPhone img {
+    padding-top: 2em;
+}
+
+#displayOnPhone p {
+    padding-bottom: 2em;
+}
 
 
 
@@ -122,16 +116,28 @@ form h1 {
 /* Rescensioner */
 #reviews {
     background-color: base.$color-primary;
-    width: 70%;
+    width: 60%;
     height: auto;
     text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1.5em;
+    padding-left: 6%;
+    padding-left: 6%;
+    padding-bottom: 2em;
 }
 
 #reviewsH2 {
+    @extend #reviews;
+    width: 61%;
     display: none;
-    background-color: base.$color-primary;
-    text-align: center;
+    padding-left: 2%;
+    padding-left: 2%;
+    padding-top: 1.5em;
+    padding-bottom: 0.5em;
 }
+
+
 
 /* footer */
 footer {
@@ -151,20 +157,22 @@ footer {
 @media (min-width: 1024px) {
 
     header {
-        width: 33%;
-        margin-left: 33%; /* ändra? */
-        margin-right: 33%; /* ändra? */
+        width: 40em;
+        margin-left: auto; 
+        margin-right: auto; 
+        margin-bottom: 2.5em;
+        margin-top: 3em;
     }
 
     /* formulär */
     form {
         background-color: base.$color-primary;
-        width: 33%;
+        width: 37.5em;
         height: auto;
         text-align: center;
-        padding: 2%;
-        padding-bottom: 3%;
-        margin-bottom: 4%;;
+        padding: 1%;
+        padding-bottom: 2%;
+        margin-bottom: 1em;;
     }
 
     /*main-innehåll*/
@@ -172,43 +180,31 @@ footer {
         display: flex;
         justify-content: center;
         align-items: center;
+        max-width: 40%;
     }
 
-    /*tillbaka- och nästa-knappar*/
-    // #next-btn, #prev-btn {
-    //     position: static; /* normal */    
 
-    // }
-
-    /*MOBIL: bildspel*/
-    #back-btn, #forward-btn {
+    /*MOBIL: utskriftsområde */
+    #displayOnPhone {
         display: none;
     }
 
     #next-btn, #prev-btn {
-        @include smallButton(transparent);
+        @include smallButton(base.$color-secondary);
         display: inline-block;
         margin-right: 10px;
         margin-left: 10px;
     }
-    
-    #next-btn {
-        margin-left: 50%;
-        margin-top: 4.5%;
-    }
-    
-    #prev-btn {
-        margin-left: 20%;
-        margin-top: 120%;
-    }
-    /*
-    button:focus {
-        outline: none;
-    }*/
-    
 
-    
+    i {
+        font-size: 50px;
+    }
 
+    i:hover {
+        color: base.$color-primary;
+    }
+
+    /*DESKTOP: bok */
     .book {
         display: inline-block;
         position: relative;
@@ -217,11 +213,11 @@ footer {
         transition: transform 0.5s;
     }
 
+    /*bläddereffekt*/
     .flipped .front,
     .flipped .back {
-    transform: rotateY(-180deg);
-   /* animation-name: flipped-page-desktop;
-    animation-duration: 0.5s;*/
+        transform: rotateY(-180deg);
+        animation-name: flipped-page
     }
 
     .book img {
@@ -237,20 +233,7 @@ footer {
         top: 0;
         left: 0;
         perspective: 1500px;
-    
     }
-    
-    /*.front,
-    .back {
-        background-color: white;
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        transform-origin: left;
-        transition: transform 0.5s;
-    }*/
     
     .front {
         @include papers;
@@ -258,7 +241,6 @@ footer {
         backface-visibility: hidden;
         border-left: 3px solid base.$color-background;
         overflow-y: scroll;
-        height: 483px;
     }
     
     .back {
@@ -271,14 +253,11 @@ footer {
         width: 100%;
         height: 100%;
         padding: 12%;
-    
-        /*display: flex;
-        justify-content: center;
-        align-items: center;*/
+        margin-left: -2em;
     }
     
     .back-content {
-        transform: rotateY(-180deg);
+        transform: rotateY(180deg);
         text-align: center;
     }
     
@@ -286,21 +265,33 @@ footer {
         margin-top: 6%;
         margin-bottom: 1.5%;
     }
-    
-    #f1{
-        /* width: 450px;
-        height: 600px;
-        border-top-right-radius: 35px;
-        border-bottom-right-radius: 35px; */
-        background-color: base.$color-secondary;
-        color: white;
+
+    .back-content h3 {
+        padding-left: 1em;
+        padding-right: 1em;
+    }
+
+    .front-content div {
+        padding: 8%;
+        margin-top: -1.5em;
     }
     
+    #f1 {
+        background-color: base.$color-secondary;
+        color: white;
+        padding-left: 4em;
+        /*#b6 ska egentligen också ha dessa inställningar, men den
+        växer i storlek varje gång den får färg på sig. Just nu får den långfingret
+        och får behålla sin vita färg.*/
+    }
+
+    
+    /*texten som kommer fram på första sidan*/
     .cover-effect {
         width: 350px;
         height: 500px;
         opacity: 0;
-        z-index: 1; //anledning till att sidan inte syns??? nej något annat har hänt
+        z-index: 1; 
         font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     }
     
@@ -309,15 +300,12 @@ footer {
     }
     
     
-    /* Paper flip effect */
+    /*bläddereffekt*/
     .flipped .front
     .flipped .back 
     {
         transform: rotateY(-180deg);
     }
-    
-    /* "page flipping-buttons*/
-    
     
     
     /* papprenas ordning */
@@ -348,4 +336,17 @@ footer {
     }
     
 
+    /* rescensioner */
+    #reviews {
+        width: 26.5%;
+    }
+
+    #reviewsH2 {
+        width: 30%;
+    }
+
+    footer {
+        padding-top: 2%;
+        margin-top: 3%;
+    }
 }
